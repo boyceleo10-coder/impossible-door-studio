@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impossible Door Studio</title>
+<style>
+body{font-family:system-ui;background:#0f0f0f;color:white;padding:20px;max-width:600px;margin:auto}
+button{background:#7c3aed;color:white;border:0;padding:12px 20px;border-radius:10px;font-weight:bold;width:100%;margin:8px 0;cursor:pointer}
+button:hover{background:#6d28d9}
+.card{background:#1e1e1e;padding:16px;border-radius:12px;margin:12px 0;white-space:pre-wrap}
+select,input{width:100%;padding:10px;border-radius:8px;margin:6px 0;background:#2a2a2a;color:white;border:1px solid #444}
+label{display:block;margin-top:12px;font-weight:bold}
+h1{text-align:center;margin-bottom:30px}
+</style>
+</head>
+<body>
+<h1>🎬 Impossible Door Studio</h1>
+
+<label>Genre</label>
+<select id="genre">
+<option>Mystery / Sci-Fi</option>
+<option>Horror</option>
+<option>Comedy</option>
+<option>Adventure</option>
+</select>
+
+<label>Your Prop (the key)</label>
+<input id="prop" placeholder="e.g. coffee mug, old remote, house key" value="coffee mug">
+
+<button onclick="makeIdea()">1. Generate Movie Idea</button>
+<div id="idea" class="card">Your idea will appear here...</div>
+
+<button onclick="makeScript()">2. Generate Script</button>
+<div id="script" class="card">Your script will appear here...</div>
+
+<button onclick="makeBackgrounds()">3. Generate Background Prompts</button>
+<div id="bgs" class="card">Your background prompts will appear here...</div>
+
+<script>
+const ideas = [
+"THE FORGOTTEN REMOTE: You find a remote with only one button labeled ELSEWHERE.",
+"THE MIRROR THAT ISN'T: Your mirror shows a different room behind you.",
+"THE LOOPING FRIDGE: Every time you open your fridge, it's a different place."
+];
+
+function makeIdea(){
+ const g = document.getElementById('genre').value;
+ const prop = document.getElementById('prop').value;
+ const idea = ideas[Math.floor(Math.random()*ideas.length)];
+ document.getElementById('idea').innerText = `Genre: ${g}\nProp: ${prop}\n\nIDEA: ${idea}\n\nHook: You + Green Screen + 2 Lights. The prop is the key.`;
+}
+
+function makeScript(){
+ const prop = document.getElementById('prop').value || "mug";
+ const script = `🚪 SCENE 1 - NORMAL ROOM (Your room)
+YOU: "Wait... what is that?"
+[You see the impossible door]
+
+SCENE 2 - THE DOOR APPEARS
+YOU: "That wasn't there yesterday."
+You walk closer. SFX: CREEEEAK
+
+SCENE 3 - JUNGLE WORLD
+YOU: "Where am I?!"
+You notice your ${prop} is glowing.
+
+SCENE 4 - CASTLE
+YOU: "Okay, this is definitely not my house."
+
+SCENE 5 - SPACE
+YOU: "I'm in space!"
+ALARM! The door disappears.
+
+SCENE 6 - THE MESSAGE
+Close-up. You find a note: "Every door has a key."
+YOU: "But where's the key?"
+
+SCENE 7 - THE KEY
+You are back home. You see your ${prop}.
+YOU: "You were the key..."
+Add glow effect. Door appears behind you.
+
+SCENE 8 - HOME (Twist ending)
+You open the door, you're home.
+You put the ${prop} down. It vanishes.
+CUT TO BLACK. Door slowly opens.`;
+ document.getElementById('script').innerText = script;
+}
+
+function makeBackgrounds(){
+ document.getElementById('bgs').innerText = `Copy these prompts to generate images with me:
+
+1. Mysterious dark sci-fi hallway with strange glowing door, cinematic
+2. Lush tropical jungle path, bright daylight, empty
+3. Giant medieval castle interior, torches, fog, empty
+4. Futuristic spaceship interior with window showing Earth, empty
+
+Just say: "Generate background 1" and I'll make it for you!`;
+}
+</script>
+</body>
+</html>
